@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Inconsolata:wght@200;300;400;500;600;700;800;900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=Oxygen:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+body{
+    /* font-family: 'Cabin', sans-serif; */
+    /* font-family: 'Fira Sans', sans-serif; */
+    /* font-family: 'Hahmlet', serif; */
+    /* font-family: 'Inconsolata', monospace; */
+    /* font-family: 'Josefin Sans', sans-serif; */
+    /* font-family: 'Lato', sans-serif; */
+    /* font-family: 'Montserrat', sans-serif; */
+    /* font-family: 'Noto Sans', sans-serif; */
+    /* font-family: 'Nunito', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: 'Oxygen', sans-serif; */
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Raleway', sans-serif; */
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: 'Rubik', sans-serif; */
+    /* font-family: 'Source Code Pro', monospace; */
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    /* font-family: 'Titillium Web', sans-serif; */
+    /* font-family: 'Ubuntu', sans-serif; */
+}
 .primary-bg{
     /* background-color: #27AE60; */
     background: linear-gradient(110.18deg, rgba(251, 161, 0, 0.95) 36.56%, rgba(251, 161, 0, 0.95) 86.56%);
@@ -46,3 +70,43 @@ background-image: url("~/static/img/box.svg");
     background-size: contain;
     /* height: 500px; */
 }
+
+
+ 
+  .footer-menu-item {
+    @apply text-white block pb-4
+  }
+    
+  .small-container {max-width: 1000px}
+  .tika-text-pink {color: #FF3C8E}
+  .tika-text-primary, .nuxt-link-exact-active.menu-item {color: #FBA100}
+  .tika-text-green {color: #27AE60}
+  .tika-text-blue {color: #3300FF}
+  
+  .tika-step:before,
+  .tika-step:after {
+  
+    top: 50%;
+    height: 2px;
+    width: 163px;
+    content: "";
+    background-color: #D6D6D6;
+    position: absolute;
+    margin-top: -1px;
+  }
+  
+  .tika-step:before {right: 20px;}
+  .tika-step:after {left: 20px;}
+  
+  .flex-1:first-child .tika-step:before, .flex-1:last-child .tika-step:after {
+    display: none;
+  }
+  
+  /* .dots-1 {width: 130px; height: 108px;background-image: url(static/img/dots-1.svg)} */
+  
+  .tika-label {
+    @apply text-lg font-semibold text-black block mb-3 cursor-pointer
+  }
+  .tika-input {
+    @apply block border bg-gray-100 border-gray-200 p-4 w-full rounded-3xl focus:outline-none focus:border-gray-400
+  }
