@@ -1,0 +1,48 @@
+.primary-bg{
+    /* background-color: #27AE60; */
+    background: linear-gradient(110.18deg, rgba(251, 161, 0, 0.95) 36.56%, rgba(251, 161, 0, 0.95) 86.56%);
+}
+.primary-bg-color{
+    background-color: #FBA100;
+}
+.primary-btn{
+    @apply primary-bg-color text-xl text-white px-6 py-2 rounded-2xl;
+}
+.menu-item{
+    @apply py-10 px-5 text-sm inline-block;
+}
+.hero-heading{
+    font-size: 9rem;
+}
+.s-inp-box{
+    width: 29rem;
+    height: 3rem;
+}
+.h-18{
+    height: 4.6rem;
+}
+.w-18{
+    width: 4.6rem;
+}
+.mid-box{
+    width: 37.5rem;
+    height: 7.1rem;
+}
+.mid-box2{
+    width: 43rem;
+    height: 1.85rem;
+}
+.box-shadow{
+background-image: url("~/static/img/box.svg");
+}
+.box-mid{
+    width: 953px;
+    height: 323px;
+}
+.hotline-box{
+    background-image: url("~/static/img/box12.png");
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: contain;
+    /* height: 500px; */
+}
