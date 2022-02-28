@@ -11,24 +11,20 @@
           <div class="w-full">
             <ul class="flex justify-center">
               <li><nuxt-link class="menu-item" to="/">Home</nuxt-link></li>
-              <li>
-                <nuxt-link class="menu-item" to="/registration">Registration</nuxt-link>
-              </li>
-              <li><nuxt-link class="menu-item" to="/verify">Verify</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="/registration">Registration</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="vaccine-card">Vaccine Card</nuxt-link></li>
-              <li><nuxt-link class="menu-item" to="/help">HelpGuide</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="/certificate">Vaccine Certificate</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="/verify">Verify</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/faqs">FAQs</nuxt-link></li>
             </ul>
           </div>
           <div class="min-w-max">
-            <div class="px-6">
-              <nuxt-link class="primary-btn" to="/registration">Register Now</nuxt-link>
+            <div class="px-6 py-1">
+              <nuxt-link class="primary-btn text-base font-medium" to="/registration">Register Now</nuxt-link>
             </div>
           </div>
         </div>
       </div>
-
-      
     </div>
   </div>
 </template>
