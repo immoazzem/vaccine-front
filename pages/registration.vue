@@ -30,7 +30,7 @@
       <div class="mx-auto small-container text-center">
         <div class="">
           <div class="max-w-screen-sm mx-auto">
-            <VaccineSteps theme="step_1" />
+            <VaccineSteps :theme="step" />
           </div>
         </div>
       </div>
@@ -40,7 +40,8 @@
       </div>
       <div class="small-container mx-auto mt-20">
         <div class="bg-white px-20 py-10 border border-gray-100">
-          <div class="">
+
+          <div v-if="step == 'step_1'" class="">
             <h3 class="font-bold text-4xl mb-6 text-center">
               Identity Verification
             </h3>
@@ -105,9 +106,85 @@
             </p>
           </div>
 
-          <div></div>
+          <div v-if="step == 'step_2'" class="">
 
-          <div></div>
+            <h3 class="font-bold text-4xl mb-6 text-center">Verify All Information</h3>
+            <p class="mb-6">
+              <label class="vacc-label" for="division_id">Select Division</label>
+              <select @change.prevent="getAvailableDistricts" name="" v-model="division_id" id="division_id" class="vacc-input">
+                <option selected="selected" value="">Select Division</option>
+                <option v-for="item in divisions" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </p>
+
+            <p v-if="districts.length" class="mb-6">
+              <label class="vacc-label" for="district_id">Select Districts</label>
+              <select @change.prevent="getAvailableUpazilas" name="" v-model="district_id" id="district_id" class="vacc-input">
+                <option selected="selected" value="">Select District</option>
+                <option v-for="item in districts" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </p>
+
+            <p v-if="upazilas.length" class="mb-6">
+              <label class="vacc-label" for="upazila_id">Select Upazila</label>
+              <select @change.prevent="getAvailableCenters" name="" v-model="upazila_id" id="upazila_id" class="vacc-input">
+                <option selected="selected" value="">Select Upazila</option>
+                <option v-for="item in upazilas" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </p>
+
+            <p v-if="centers.length" class="mb-6">
+              <label class="vacc-label" for="center_id">Select Vaccination Center </label>
+              <select v-model="center_id" class="vacc-input" id="center_id">
+                <option selected="selected" value="">Select a center</option>
+                <option v-for="item in centers" :key="item.id" :value="item.id">{{item.name}}</option>
+              </select>
+            </p>
+
+            <p v-if="!centers.length && upazila_id">
+              No center available
+            </p>
+
+            <div v-if="center_id" class="">
+              <p class="mb-6">
+                <label for="name" class="vacc-label">Name</label>
+                <input id="name" v-model="name" type="text" class="vacc-input" placeholder="Type your name">
+              </p>
+              <p class="mb-6">
+                <label for="diabates" class="vacc-label">Do you have diabates?</label>
+                <select v-model="diabates" class="vacc-input" id="diabates">
+                  <option selected="selected" value="">Select a value</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </p>
+
+              <p v-if="diabates"><button @click.prevent="goToStepThree" class="primary-btn">Submit</button></p>
+            </div>
+
+          </div>
+
+          <div v-if="step == 'step_3'">
+            <h3 class="font-bold text-4xl mb-6 text-center">Phone verification</h3>
+
+            <div v-if="!smsSent" >
+              <p class="mb-6">
+                <label for="phone_no" class="vacc-label">Phone number</label>
+                <input id="phone_no" v-model="phone_no" type="text" class="vacc-input" placeholder="Type phone number">
+              </p>
+              <p><button @click.prevent="sendVerificationSMS" class="primary-btn">Send SMS</button></p>
+            </div>
+
+            <div v-if="smsSent" >
+              <p class="mb-6">
+                <label for="verify_code" class="vacc-label">Verification code</label>
+                <input id="verify_code" v-model="verify_code" type="text" class="vacc-input" placeholder="Type verification code">
+              </p>
+              <p><button @click.prevent="verifyCode" class="primary-btn">Verify</button></p>
+            </div>
+
+
+          </div>
         </div>
       </div>
       <div class="threesteps mt-24">
@@ -129,16 +206,31 @@ export default {
   data() {
     return {
       categories: [],
+      divisions: [],
+      districts: [],
+      upazilas: [],
+      centers: [],
+      step:'step_3',
       peopleData: [],
       verifyData: {
-        category_id: "",
-        id_no: "",
-        dob: "",
+        category_id: '',
+        id_no: '',
+        dob: '',
       },
+      division_id: '',
+      district_id: '',
+      upazila_id: '',
+      center_id: '',
+      name: '',
+      diabates: '',
+      phone_no: '',
+      verify_code: '',
+      smsSent: false
     };
   },
   mounted() {
     this.getAvailableCategories();
+    this.getAvailableDivisions();
     // this.checkInformation();
   },
   methods: {
@@ -151,8 +243,59 @@ export default {
     checkInformation() {
       this.$axios.post("/verify", this.verifyData).then((res) => {
         this.peopleData = res.data;
+        if (res.data.success) {
+          this.step = 'step_2';
+        }
       });
     },
+
+    getAvailableDivisions() {
+      this.$axios.get("/divisions").then((res) => {
+        this.divisions = res.data;
+      });
+    },
+
+    getAvailableDistricts() {
+      this.$axios.get('/districts?division_id=' + this.division_id).then((res) => {
+        this.districts = res.data;
+      });
+    },
+
+    getAvailableUpazilas() {
+      this.$axios.get('/upazilas?district_id=' + this.district_id).then((res) => {
+        this.upazilas = res.data;
+      });
+    },
+
+    getAvailableCenters(){
+      this.$axios.get('/vaccination-centers?upazila_id=' + this.upazila_id).then((res) => {
+        this.centers = res.data;
+      });
+    },
+
+    goToStepThree() {
+      this.step = 'step_3'
+    },
+
+    sendVerificationSMS() {
+      this.$axios.post('/phone-verify', {
+        phone: this.phone_no
+      }).then(res => {
+        if(res.data == 'pending') {
+          this.smsSent = true;
+        }
+      })
+    },
+
+    verifyCode() {
+      this.$axios.post('/phone-verify-code', {
+        phone: this.phone_no,
+        verify_code: this.verify_code
+      }).then(res => {
+        console.log(res.data)
+      })
+    }
+
   },
 };
 </script>

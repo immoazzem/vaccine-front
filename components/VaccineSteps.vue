@@ -24,20 +24,20 @@
 
       <div class="flex-1 px-6">
         <div class="h-32 flex justify-center items-center">
-          <img v-if="theme == 'homepage' || theme == 'step_2' || theme == 'step_3'" class="mx-auto" src="~/static/img/phone.svg" alt="" />
-          <img v-if="theme == 'step_1'" class="mx-auto" src="~/static/img/phone-disabled.svg" alt="" />
+          <img v-if="theme == 'homepage' || theme == 'step_2' || theme == 'step_3'" class="mx-auto" src="~/static/img/information.svg" alt="" />
+          <img v-if="theme == 'step_1'" class="mx-auto" src="~/static/img/information-disabled.svg" alt="" />
         </div>
         <div v-bind:class="theme == 'homepage' || theme == 'step_2 ' || theme == 'step_3' ? 'border-green-600' : 'border-gray-400'" class=" border-4 w-6 h-6 rounded-full mx-auto mb-4 mt-8 tika-step relative"></div>
-        <p class="text-lg font-bold">Phone</p>
+        <p class="text-lg font-bold">Information</p>
       </div>
 
       <div class="flex-1 px-6">
         <div class="h-32 flex justify-center items-center">
-          <img v-if="theme == 'homepage' || theme == 'step_3'" class="mx-auto" src="~/static/img/information.svg" alt="" />
-          <img v-if="theme == 'step_1' || theme == 'step_2'" class="mx-auto" src="~/static/img/information-disabled.svg" alt="" />
+          <img v-if="theme == 'homepage' || theme == 'step_3'" class="mx-auto" src="~/static/img/phone.svg"  alt="" />
+          <img v-if="theme == 'step_1' || theme == 'step_2'" class="mx-auto" src="~/static/img/phone-disabled.svg" alt="" />
         </div>
         <div v-bind:class="theme == 'homepage' || theme == 'step_3' ? 'border-green-600' : 'border-gray-400'" class=" border-4 w-6 h-6 rounded-full mx-auto mb-4 mt-8 tika-step relative"></div>
-        <p class="text-lg font-bold">Information</p>
+        <p class="text-lg font-bold">Phone</p>
       </div>
     </div>
   </div>
