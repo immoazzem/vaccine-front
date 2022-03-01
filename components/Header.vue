@@ -1,6 +1,6 @@
 <template>
   <div class="primary-bg">
-    <div class="container mx-auto pt-20 pb-10">
+    <div class="container mx-auto py-14">
       <div class="bg-white">
         <div class="flex items-center">
           <div class="min-w-max">
@@ -12,10 +12,11 @@
             <ul class="flex justify-center">
               <li><nuxt-link class="menu-item" to="/">Home</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/registration">Registration</nuxt-link></li>
-              <li><nuxt-link class="menu-item" to="vaccine-card">Vaccine Card</nuxt-link></li>
-              <li><nuxt-link class="menu-item" to="/certificate">Vaccine Certificate</nuxt-link></li>
-              <li><nuxt-link class="menu-item" to="/verify">Verify</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="vaccine-card">Card</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="/certificate">Certificate</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="/verify">Verify Certificate</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/faqs">FAQs</nuxt-link></li>
+              <!-- <li><nuxt-link class="menu-item" to="/vcard">VC</nuxt-link></li> -->
             </ul>
           </div>
           <div class="min-w-max">

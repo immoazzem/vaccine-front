@@ -78,6 +78,7 @@ background-image: url("~/static/img/box.svg");
   }
     
   .small-container {max-width: 1000px}
+  .xm-container {max-width: 700px;}
   .tika-text-pink {color: #FF3C8E}
   .tika-text-primary, .nuxt-link-exact-active.menu-item {color: #FBA100}
   .tika-text-green {color: #27AE60}
