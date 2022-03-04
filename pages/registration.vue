@@ -185,6 +185,19 @@
 
 
           </div>
+
+          <div v-if="step == 'step_4'">
+            <div class="min-w-max mx-auto">
+              <img src="~/static/img/checkmark-success.svg" alt="" />
+            </div>
+            <div class=" min-w-max">
+              <h1 class="text-4xl font-bold text-black">Registration Successful</h1>
+            </div>
+            <div class=" min-w-max">
+              <p><button @click.prevent="registerPeople" class="primary-btn">See Registration Status</button></p>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="threesteps mt-24">
@@ -197,6 +210,7 @@
 <script>
 import VaccineSteps from "../components/VaccineSteps";
 import ThreeSteps from "../components/ThreeSteps";
+
 export default {
   name: "registration",
   components: {
@@ -205,11 +219,13 @@ export default {
   },
   data() {
     return {
+      allData: '',
       categories: [],
       divisions: [],
       districts: [],
       upazilas: [],
       centers: [],
+      smsVerified: false,
       step:'step_1',
       peopleData: [],
       verifyData: {
@@ -274,7 +290,7 @@ export default {
     },
 
     goToStepThree() {
-      this.step = 'step_3'
+      this.step = 'step_4'
     },
 
     sendVerificationSMS() {
@@ -292,9 +308,43 @@ export default {
         phone: this.phone_no,
         verify_code: this.verify_code
       }).then(res => {
+        if(res.data == 'approved') {
+          this.smsVerified = true;
+          this.step = 'step_4';
+        }
         console.log(res.data)
       })
-    }
+    },
+
+    registerPeople(){
+      this.allData = {
+        category_id: this.verifyData.category_id,
+        id_no: this.verifyData.id_no,
+        dob: this.verifyData.dob,
+        division_id: this.division_id,
+        district_id: this.district_id,
+        upazila_id: this.upazila_id,
+        center_id: this.center_id,
+        name: this.name,
+        diabates: this.diabates,
+        phone_no: this.phone_no,
+      }
+      this.$axios.post('/register-vaccine', this.allData).then(res => {
+        console.log(res.data)
+      })
+      console.log(this.allData);
+      // this.$axios.post('/register', {
+      //   name: this.name,
+      //   category_id: this.category_id,
+      //   id_no: this.id_no,
+      //   dob: this.dob,
+      //   diabates: this.diabates,
+      //   phone_no: this.phone_no,
+      //   center_id: this.center_id
+      // }).then(res => {
+      //   console.log(res.data)
+      // })
+    },
 
   },
 };
