@@ -40,15 +40,17 @@
       </div>
       <div class="small-container mx-auto mt-20">
         <div class="bg-white px-20 py-10 border border-gray-100">
-
           <div v-if="step == 'step_1'" class="">
             <h3 class="font-bold text-4xl mb-6 text-center">
               Identity Verification
             </h3>
 
-            <div v-if="peopleData.hasOwnProperty('success') && !peopleData.success" class="bg-red-200 text-red-900 p-4 mb-6">
-                {{ peopleData.message }}
-              </div>
+            <div
+              v-if="peopleData.hasOwnProperty('success') && !peopleData.success"
+              class="bg-red-200 text-red-900 p-4 mb-6"
+            >
+              {{ peopleData.message }}
+            </div>
 
             <p class="mb-6">
               <label class="vacc-label" for="category_id"
@@ -107,51 +109,102 @@
           </div>
 
           <div v-if="step == 'step_2'" class="">
-
-            <h3 class="font-bold text-4xl mb-6 text-center">Verify All Information</h3>
+            <h3 class="font-bold text-4xl mb-6 text-center">
+              Verify All Information
+            </h3>
             <p class="mb-6">
-              <label class="vacc-label" for="division_id">Select Division</label>
-              <select @change.prevent="getAvailableDistricts" name="" v-model="division_id" id="division_id" class="vacc-input">
+              <label class="vacc-label" for="division_id"
+                >Select Division</label
+              >
+              <select
+                @change.prevent="getAvailableDistricts"
+                name=""
+                v-model="division_id"
+                id="division_id"
+                class="vacc-input"
+              >
                 <option selected="selected" value="">Select Division</option>
-                <option v-for="item in divisions" :key="item.id" :value="item.id">{{ item.name }}</option>
+                <option
+                  v-for="item in divisions"
+                  :key="item.id"
+                  :value="item.id"
+                >
+                  {{ item.name }}
+                </option>
               </select>
             </p>
 
             <p v-if="districts.length" class="mb-6">
-              <label class="vacc-label" for="district_id">Select Districts</label>
-              <select @change.prevent="getAvailableUpazilas" name="" v-model="district_id" id="district_id" class="vacc-input">
+              <label class="vacc-label" for="district_id"
+                >Select Districts</label
+              >
+              <select
+                @change.prevent="getAvailableUpazilas"
+                name=""
+                v-model="district_id"
+                id="district_id"
+                class="vacc-input"
+              >
                 <option selected="selected" value="">Select District</option>
-                <option v-for="item in districts" :key="item.id" :value="item.id">{{ item.name }}</option>
+                <option
+                  v-for="item in districts"
+                  :key="item.id"
+                  :value="item.id"
+                >
+                  {{ item.name }}
+                </option>
               </select>
             </p>
 
             <p v-if="upazilas.length" class="mb-6">
               <label class="vacc-label" for="upazila_id">Select Upazila</label>
-              <select @change.prevent="getAvailableCenters" name="" v-model="upazila_id" id="upazila_id" class="vacc-input">
+              <select
+                @change.prevent="getAvailableCenters"
+                name=""
+                v-model="upazila_id"
+                id="upazila_id"
+                class="vacc-input"
+              >
                 <option selected="selected" value="">Select Upazila</option>
-                <option v-for="item in upazilas" :key="item.id" :value="item.id">{{ item.name }}</option>
+                <option
+                  v-for="item in upazilas"
+                  :key="item.id"
+                  :value="item.id"
+                >
+                  {{ item.name }}
+                </option>
               </select>
             </p>
 
             <p v-if="centers.length" class="mb-6">
-              <label class="vacc-label" for="center_id">Select Vaccination Center </label>
+              <label class="vacc-label" for="center_id"
+                >Select Vaccination Center
+              </label>
               <select v-model="center_id" class="vacc-input" id="center_id">
                 <option selected="selected" value="">Select a center</option>
-                <option v-for="item in centers" :key="item.id" :value="item.id">{{item.name}}</option>
+                <option v-for="item in centers" :key="item.id" :value="item.id">
+                  {{ item.name }}
+                </option>
               </select>
             </p>
 
-            <p v-if="!centers.length && upazila_id">
-              No center available
-            </p>
+            <p v-if="!centers.length && upazila_id">No center available</p>
 
             <div v-if="center_id" class="">
               <p class="mb-6">
                 <label for="name" class="vacc-label">Name</label>
-                <input id="name" v-model="name" type="text" class="vacc-input" placeholder="Type your name">
+                <input
+                  id="name"
+                  v-model="name"
+                  type="text"
+                  class="vacc-input"
+                  placeholder="Type your name"
+                />
               </p>
               <p class="mb-6">
-                <label for="diabates" class="vacc-label">Do you have diabates?</label>
+                <label for="diabates" class="vacc-label"
+                  >Do you have diabates?</label
+                >
                 <select v-model="diabates" class="vacc-input" id="diabates">
                   <option selected="selected" value="">Select a value</option>
                   <option value="1">Yes</option>
@@ -159,45 +212,231 @@
                 </select>
               </p>
 
-              <p v-if="diabates"><button @click.prevent="goToStepThree" class="primary-btn">Submit</button></p>
+              <p v-if="diabates">
+                <button @click.prevent="goToStepThree" class="primary-btn">
+                  Submit
+                </button>
+              </p>
             </div>
-
           </div>
 
           <div v-if="step == 'step_3'">
-            <h3 class="font-bold text-4xl mb-6 text-center">Phone verification</h3>
+            <h3 class="font-bold text-4xl mb-6 text-center">
+              Phone verification
+            </h3>
 
-            <div v-if="!smsSent" >
+            <div v-if="!smsSent">
               <p class="mb-6">
                 <label for="phone_no" class="vacc-label">Phone number</label>
-                <input id="phone_no" v-model="phone_no" type="text" class="vacc-input" placeholder="Type phone number">
+                <input
+                  id="phone_no"
+                  v-model="phone_no"
+                  type="text"
+                  class="vacc-input"
+                  placeholder="Type phone number"
+                />
               </p>
-              <p><button @click.prevent="sendVerificationSMS" class="primary-btn">Send SMS</button></p>
+              <p>
+                <button
+                  @click.prevent="sendVerificationSMS"
+                  class="primary-btn"
+                >
+                  Send SMS
+                </button>
+              </p>
             </div>
 
-            <div v-if="smsSent" >
+            <div v-if="smsSent">
               <p class="mb-6">
-                <label for="verify_code" class="vacc-label">Verification code</label>
-                <input id="verify_code" v-model="verify_code" type="text" class="vacc-input" placeholder="Type verification code">
+                <label for="verify_code" class="vacc-label"
+                  >Verification code</label
+                >
+                <input
+                  id="verify_code"
+                  v-model="verify_code"
+                  type="text"
+                  class="vacc-input"
+                  placeholder="Type verification code"
+                />
               </p>
-              <p><button @click.prevent="verifyCode" class="primary-btn">Verify</button></p>
-            </div>
-
-
-          </div>
-
-          <div v-if="step == 'step_4'">
-            <div class="min-w-max mx-auto">
-              <img src="~/static/img/checkmark-success.svg" alt="" />
-            </div>
-            <div class=" min-w-max">
-              <h1 class="text-4xl font-bold text-black">Registration Successful</h1>
-            </div>
-            <div class=" min-w-max">
-              <p><button @click.prevent="registerPeople" class="primary-btn">See Registration Status</button></p>
+              <p>
+                <button
+                  @click.prevent="
+                    verifyCode();
+                    registerPeople();
+                  "
+                  class="primary-btn"
+                >
+                  Verify
+                </button>
+              </p>
             </div>
           </div>
 
+          <div v-if="step == 'step_4'" class="flex-wrap mx-auto text-center">
+            <div class="flex flex-col min-w-max mx-auto mb-8">
+              <img
+                src="~/static/img/checkmark-success.svg"
+                alt=""
+                class="w-20 h-20 mx-auto"
+              />
+            </div>
+            <div class="w-full mx-auto mb-8">
+              <h1 class="text-4xl font-bold text-black">
+                Registration Successful
+              </h1>
+            </div>
+            <div class="w-full mx-auto">
+              <p>
+                <button @click.prevent="getRegStatus" class="primary-btn">
+                  See Registration Status
+                </button>
+              </p>
+            </div>
+          </div>
+
+          <div v-if="step == 'step_5'" class="">
+            <div>
+              <!-- This example requires Tailwind CSS v2.0+ -->
+              <div class="flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div
+                    class="
+                      py-2
+                      align-middle
+                      inline-block
+                      min-w-full
+                      sm:px-6
+                      lg:px-8
+                    "
+                  >
+                    <div
+                      class="
+                        shadow
+                        overflow-hidden
+                        border-b border-gray-200
+                        sm:rounded-lg
+                      "
+                    >
+                      <table
+                        class="min-w-full divide-y divide-gray-200"
+                      >
+                        <thead class="bg-gray-50">
+                          <tr>
+                            <th
+                              scope="col"
+                              class="
+                                px-6
+                                py-3
+                                text-left text-xs
+                                font-medium
+                                text-gray-500
+                                uppercase
+                                tracking-wider
+                              "
+                            >
+                              Name
+                            </th>
+                            <th
+                              scope="col"
+                              class="
+                                px-6
+                                py-3
+                                text-left text-xs
+                                font-medium
+                                text-gray-500
+                                uppercase
+                                tracking-wider
+                              "
+                            >
+                              Nid
+                            </th>
+                            <th
+                              scope="col"
+                              class="
+                                px-6
+                                py-3
+                                text-left text-xs
+                                font-medium
+                                text-gray-500
+                                uppercase
+                                tracking-wider
+                              "
+                            >
+                              Status
+                            </th>
+                            <th
+                              scope="col"
+                              class="
+                                px-6
+                                py-3
+                                text-left text-xs
+                                font-medium
+                                text-gray-500
+                                uppercase
+                                tracking-wider
+                              "
+                            >
+                              Role
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                          <tr
+                            v-for="stat in regStatus"
+                            :key="stat.id"
+                            :value="stat.id"
+                          >
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="text-sm text-gray-900">
+                                {{ stat.name }}
+                              </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="text-sm text-gray-900">
+                                {{ stat.id_no }}
+                              </div>
+                            </td>
+                            <td
+                              v-if="stat.id_no == true"
+                              class="px-6 py-4 whitespace-nowrap"
+                            >
+                              <span
+                                class="
+                                  px-2
+                                  inline-flex
+                                  text-xs
+                                  leading-5
+                                  font-semibold
+                                  rounded-full
+                                  bg-green-100
+                                  text-green-800
+                                "
+                              >
+                                Registered
+                              </span>
+                            </td>
+                            <td
+                              class="
+                                px-6
+                                py-4
+                                whitespace-nowrap
+                                text-sm text-gray-500
+                              "
+                            >
+                              Admin
+                            </td>
+                          </tr>
+
+                          <!-- More people... -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="threesteps mt-24">
@@ -219,29 +458,30 @@ export default {
   },
   data() {
     return {
-      allData: '',
+      allData: "",
+      regStatus: [],
       categories: [],
       divisions: [],
       districts: [],
       upazilas: [],
       centers: [],
       smsVerified: false,
-      step:'step_1',
+      step: "step_1",
       peopleData: [],
       verifyData: {
-        category_id: '',
-        id_no: '',
-        dob: '',
+        category_id: "",
+        id_no: "",
+        dob: "",
       },
-      division_id: '',
-      district_id: '',
-      upazila_id: '',
-      center_id: '',
-      name: '',
-      diabates: '',
-      phone_no: '',
-      verify_code: '',
-      smsSent: false
+      division_id: "",
+      district_id: "",
+      upazila_id: "",
+      center_id: "",
+      name: "",
+      diabates: "",
+      phone_no: "",
+      verify_code: "",
+      smsSent: false,
     };
   },
   mounted() {
@@ -260,7 +500,7 @@ export default {
       this.$axios.post("/verify", this.verifyData).then((res) => {
         this.peopleData = res.data;
         if (res.data.success) {
-          this.step = 'step_2';
+          this.step = "step_2";
         }
       });
     },
@@ -272,51 +512,61 @@ export default {
     },
 
     getAvailableDistricts() {
-      this.$axios.get('/districts?division_id=' + this.division_id).then((res) => {
-        this.districts = res.data;
-      });
+      this.$axios
+        .get("/districts?division_id=" + this.division_id)
+        .then((res) => {
+          this.districts = res.data;
+        });
     },
 
     getAvailableUpazilas() {
-      this.$axios.get('/upazilas?district_id=' + this.district_id).then((res) => {
-        this.upazilas = res.data;
-      });
+      this.$axios
+        .get("/upazilas?district_id=" + this.district_id)
+        .then((res) => {
+          this.upazilas = res.data;
+        });
     },
 
-    getAvailableCenters(){
-      this.$axios.get('/vaccination-centers?upazila_id=' + this.upazila_id).then((res) => {
-        this.centers = res.data;
-      });
+    getAvailableCenters() {
+      this.$axios
+        .get("/vaccination-centers?upazila_id=" + this.upazila_id)
+        .then((res) => {
+          this.centers = res.data;
+        });
     },
 
     goToStepThree() {
-      this.step = 'step_4'
+      this.step = "step_3";
     },
 
     sendVerificationSMS() {
-      this.$axios.post('/phone-verify', {
-        phone: this.phone_no
-      }).then(res => {
-        if(res.data == 'pending') {
-          this.smsSent = true;
-        }
-      })
+      this.$axios
+        .post("/phone-verify", {
+          phone: this.phone_no,
+        })
+        .then((res) => {
+          if (res.data == "pending") {
+            this.smsSent = true;
+          }
+        });
     },
 
     verifyCode() {
-      this.$axios.post('/phone-verify-code', {
-        phone: this.phone_no,
-        verify_code: this.verify_code
-      }).then(res => {
-        if(res.data == 'approved') {
-          this.smsVerified = true;
-          this.step = 'step_4';
-        }
-        console.log(res.data)
-      })
+      this.$axios
+        .post("/phone-verify-code", {
+          phone: this.phone_no,
+          verify_code: this.verify_code,
+        })
+        .then((res) => {
+          if (res.data == "approved") {
+            this.smsVerified = true;
+            this.step = "step_4";
+          }
+          console.log(res.data);
+        });
     },
 
-    registerPeople(){
+    registerPeople() {
       this.allData = {
         category_id: this.verifyData.category_id,
         id_no: this.verifyData.id_no,
@@ -328,10 +578,10 @@ export default {
         name: this.name,
         diabates: this.diabates,
         phone_no: this.phone_no,
-      }
-      this.$axios.post('/register-vaccine', this.allData).then(res => {
-        console.log(res.data)
-      })
+      };
+      this.$axios.post("/register-vaccine", this.allData).then((res) => {
+        console.log(res.data);
+      });
       console.log(this.allData);
       // this.$axios.post('/register', {
       //   name: this.name,
@@ -346,6 +596,15 @@ export default {
       // })
     },
 
+    getRegStatus() {
+      this.$axios
+        .post("/registration-status", { id_no: this.verifyData.id_no })
+        .then((res) => {
+          this.step = "step_5";
+          this.regStatus = res.data;
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>
