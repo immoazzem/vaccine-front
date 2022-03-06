@@ -12,7 +12,7 @@
             <ul class="flex justify-center">
               <li><nuxt-link class="menu-item" to="/">Home</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/registration">Registration</nuxt-link></li>
-              <li><nuxt-link class="menu-item" to="vaccine-card">Card</nuxt-link></li>
+              <li><nuxt-link class="menu-item" to="/vaccine-card">Card</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/certificate">Certificate</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/verify">Verify Certificate</nuxt-link></li>
               <li><nuxt-link class="menu-item" to="/faqs">FAQs</nuxt-link></li>

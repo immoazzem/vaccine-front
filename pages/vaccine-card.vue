@@ -9,7 +9,7 @@
       <div class="py-20">
         <div class="small-container mx-auto mt-20">
           <div class="bg-white px-20 py-10 border border-gray-100">
-            <div class="">
+            <div v-if="isVerified == false" class="">
               <h3 class="font-bold text-4xl mb-6 text-center">
                 Verify Information
               </h3>
@@ -50,6 +50,22 @@
                 </p>
               </div>
             </div>
+
+            <div v-if="isVerified == true">
+              <div v-if="step == 'step_1'">
+                <h3 class="font-bold text-4xl mb-6 text-center">
+                  NID Verified
+                </h3>
+
+              </div>
+              <div v-if="step == 'step_2'">
+                <h3 class="font-bold text-xl mb-6 text-center">
+                  Not Data Found! Reigster First
+                </h3>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -64,13 +80,33 @@ export default {
   data() {
     return {
       verifyData: {
+        category_id: '1',
         id_no: "",
         dob: ""
-      }
+      },
+      isVerified: false,
+      step: '',
+      peopleData: [],
+      
     };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+  },
+  methods: {
+    checkInformation() {
+      this.$axios.post("/verify", this.verifyData).then((res) => {
+        this.peopleData = res.data;
+        if (res.data.success) {
+          this.isVerified = true;
+          this.step = "step_1";
+        } else if (res.data.success == false) {
+          this.isVerified = true;
+          this.step = "step_2";
+        }
+      });
+    },
+
+  },
 };
 </script>
 

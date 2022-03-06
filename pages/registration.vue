@@ -382,23 +382,18 @@
                           </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                          <tr
-                            v-for="stat in regStatus"
-                            :key="stat.id"
-                            :value="stat.id"
-                          >
+                          <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
                               <div class="text-sm text-gray-900">
-                                {{ stat.name }}
+                                {{ regStatus.name }}
                               </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                               <div class="text-sm text-gray-900">
-                                {{ stat.id_no }}
+                                {{ regStatus.id_no }}
                               </div>
                             </td>
                             <td
-                              v-if="stat.id_no == true"
                               class="px-6 py-4 whitespace-nowrap"
                             >
                               <span
@@ -424,7 +419,7 @@
                                 text-sm text-gray-500
                               "
                             >
-                              Admin
+                              Citizen
                             </td>
                           </tr>
 

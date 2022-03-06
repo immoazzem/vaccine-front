@@ -4,7 +4,16 @@
       <div class="container mx-auto">
         <div class="flex items-center">
           <div class="w-full">
-            <h1 class="hero-heading font-bold text-white uppercase leading-none mb-8">
+            <h1
+              class="
+                hero-heading
+                font-bold
+                text-white
+                uppercase
+                leading-none
+                mb-8
+              "
+            >
               Vaccine
             </h1>
             <h2 class="font-medium text-7xl text-white mb-8">Registration</h2>
@@ -14,7 +23,19 @@
             </p>
             <div class="flex rounded-full bg-white items-center p-1 w-2/3">
               <input type="text" class="w-full px-3 focus:outline-none" />
-              <button class="min-w-max primary-bg text-base font-medium rounded-full px-6 py-2 -m-px text-white">
+              <button
+                class="
+                  min-w-max
+                  primary-bg
+                  text-base
+                  font-medium
+                  rounded-full
+                  px-6
+                  py-2
+                  -m-px
+                  text-white
+                "
+              >
                 Go
               </button>
             </div>
@@ -48,7 +69,7 @@
       <div class="container mx-auto small-container text-center">
         <div class="">
           <div class="max-w-screen-sm mx-auto">
-            <VaccineSteps theme="homepage"/>
+            <VaccineSteps theme="homepage" />
           </div>
 
           <div class="text-left mb-16">
@@ -62,7 +83,10 @@
 
           <div class="flex mt-10 mb-40 mx-auto">
             <div class="w-1/4 px-2">
-              <nuxt-link to="" class="block shadow-lg w-56 h-80 px-14 relative">
+              <nuxt-link
+                to="/registration"
+                class="block shadow-lg w-56 h-80 px-14 relative"
+              >
                 <div class="flex justify-center items-center h-48">
                   <img class="" src="~/static/img/004-checkmark1.svg" alt="" />
                 </div>
@@ -73,7 +97,10 @@
               </nuxt-link>
             </div>
             <div class="w-1/4 px-2">
-              <nuxt-link to="" class="block shadow-lg w-56 h-80 px-14 relative">
+              <nuxt-link
+                to="/vaccine-card"
+                class="block shadow-lg w-56 h-80 px-14 relative"
+              >
                 <div class="flex justify-center items-center h-48">
                   <img class="" src="~/static/img/005-id-card1.svg" alt="" />
                 </div>
@@ -84,7 +111,10 @@
               </nuxt-link>
             </div>
             <div class="w-1/4 px-2">
-              <nuxt-link to="" class="block shadow-lg w-56 h-80 px-14 relative">
+              <nuxt-link
+                to="/certificate"
+                class="block shadow-lg w-56 h-80 px-14 relative"
+              >
                 <div class="flex justify-center items-center h-48">
                   <img
                     class=""
@@ -99,7 +129,10 @@
               </nuxt-link>
             </div>
             <div class="w-1/4 px-2">
-              <nuxt-link to="" class="block shadow-lg w-56 h-80 px-14 relative">
+              <nuxt-link
+                to="/faqs"
+                class="block shadow-lg w-56 h-80 px-14 relative"
+              >
                 <div class="flex justify-center items-center h-48">
                   <img class="" src="~/static/img/011-faq1.svg" alt="" />
                 </div>
@@ -136,7 +169,9 @@
                         <img src="~/static/img/phone-call-pink.svg" alt="" />
                       </div>
                       <div class="w-full">
-                        <h1 class="text-3xl font-bold text-pink-500">333</h1>
+                        <a href="tel:333">
+                          <h1 class="text-3xl font-bold text-pink-500">333</h1>
+                        </a>
                         <p class="text-xl font-normal text-black">
                           National Call Center
                         </p>
@@ -151,7 +186,11 @@
                         <img src="~/static/img/phone-call-green.svg" alt="" />
                       </div>
                       <div class="w-full">
-                        <h1 class="text-3xl font-bold text-green-500">16263</h1>
+                        <a href="tel:16263">
+                          <h1 class="text-3xl font-bold text-green-500">
+                            16263
+                          </h1>
+                        </a>
                         <p class="text-xl font-normal text-black">
                           Health Portal
                         </p>
@@ -166,9 +205,11 @@
                         <img src="~/static/img/phone-call-yellow.svg" alt="" />
                       </div>
                       <div class="w-full">
-                        <h1 class="text-3xl font-bold text-yellow-500">
-                          10655
-                        </h1>
+                        <a href="tel:10655">
+                          <h1 class="text-3xl font-bold text-yellow-500">
+                            10655
+                          </h1>
+                        </a>
                         <p class="text-xl font-normal text-black">IEDCR</p>
                       </div>
                     </div>
@@ -181,9 +222,11 @@
                         <img src="~/static/img/phone-call-blue.svg" alt="" />
                       </div>
                       <div class="w-full">
-                        <h1 class="text-3xl font-bold text-blue-500">
-                          09666777222
-                        </h1>
+                        <a href="tel:09666777222">
+                          <h1 class="text-3xl font-bold text-blue-500">
+                            09666777222
+                          </h1>
+                        </a>
                         <p class="text-xl font-normal text-black">
                           Covid-19 Telehealth
                         </p>
@@ -228,13 +271,13 @@
 </template>
 
 <script>
-import ThreeSteps from '../components/ThreeSteps';
-import VaccineSteps from '../components/VaccineSteps';
+import ThreeSteps from "../components/ThreeSteps";
+import VaccineSteps from "../components/VaccineSteps";
 
 export default {
   components: {
     VaccineSteps,
     ThreeSteps,
-  }
+  },
 };
 </script>

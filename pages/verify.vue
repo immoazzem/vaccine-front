@@ -81,8 +81,32 @@ export default {
       },
     };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    this.getAvailableCategories();
+    this.getAvailableDivisions();
+  },
+  methods: {
+    getAvailableCategories() {
+      this.$axios.get("/categories").then((res) => {
+        this.categories = res.data;
+      });
+    },
+
+    getAvailableDivisions() {
+      this.$axios.get("/divisions").then((res) => {
+        this.divisions = res.data;
+      });
+    },
+
+    checkInformation() {
+      this.$axios.post("/verify", this.verifyData).then((res) => {
+        this.peopleData = res.data;
+        if (res.data.success) {
+          this.step = "step_2";
+        }
+      });
+    },
+  },
 };
 </script>
 

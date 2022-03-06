@@ -9,7 +9,7 @@
       <div class="py-20">
         <div class="small-container mx-auto mt-20">
           <div class="bg-white px-20 py-10 border border-gray-100">
-            <div class="">
+            <div v-if="isVerified == false" class="">
               <h3 class="font-bold text-4xl mb-6 text-center">
                 Verify Information
               </h3>
@@ -50,6 +50,19 @@
                 </p>
               </div>
             </div>
+
+            <div v-if="isVerified == true">
+              <h3 class="font-bold text-4xl mb-6 text-center">
+                NID Verified
+              </h3>
+              <div class="text-center">
+                <p>
+                  <button @click.prevent="downloadCertificate" class="primary-btn">
+                    Download Certificate
+                  </button>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -66,11 +79,22 @@ export default {
       verifyData: {
         id_no: "",
         dob: ""
-      }
+      },
+      isVerified: false,
+
     };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    checkInformation() {
+      this.$axios.post("/verify", this.verifyData).then((res) => {
+        this.peopleData = res.data;
+        if (res.data.success) {
+          this.isVerified = true;
+        }
+      });
+    },
+  },
 };
 </script>
 
